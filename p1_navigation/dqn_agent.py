@@ -114,12 +114,13 @@ class Agent():
         # So we have it just set to rewards if we're done.  If we're not, we also add in
         # the discounted reward seen at the next state
         # We do not need gradients from the target network, so detach - we aren't optimising this network
+        # This network will eventually be transformed into the local network by incrementally
+        # adding in the weights from the local network
         y_j = rewards + (1.0 - dones) * gamma * torch.max(self.qnetwork_target(next_states).detach(), dim=1)[0].unsqueeze(1)
         
         # Step #2 - Calculate inference using local network with the previous states
         # So do the inference, then for each row, select the actions defined from the previous
         # state and get the Q values
-        #local_inference = self.qnetwork_local(states)[torch.arange(BATCH_SIZE).type(torch.LongTensor), actions]
         local_inference = self.qnetwork_local(states).gather(1, actions)
         
         # Step #3 - Calculate loss, then do standard backprop
