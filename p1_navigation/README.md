@@ -1,22 +1,23 @@
 # Project 1: Navigation
 
-### Introduction
+## Introduction
 
 For this project, the objective was to train an agent to navigate (and collect bananas!) in a large, square world.  
 
 A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana.  Thus, the goal of the agent is to collect as many yellow bananas as possible while avoiding blue bananas.  
 
-The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.  Given this information, the agent has to learn how to best select actions.  Four discrete actions are available, corresponding to:
+The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around the agent's forward direction.  Given this information, the agent has to learn how to best select actions.  Four discrete actions are available, corresponding to:
+
 - **`0`** - move forward.
 - **`1`** - move backward.
 - **`2`** - turn left.
 - **`3`** - turn right.
 
-The task is episodic, and in order to solve the environment, the must achieve an average score of +13 over 100 consecutive episodes.
+The task is episodic and in order to solve the environment, the agent must achieve an average score of +13 over 100 consecutive episodes.
 
-### Getting Started
+## Getting Started
 
-1. The `setup.ipynb` notebook in the main directory of this repo should be run so that the necessary installs can take place.  This includes installing a minimal working version of OpenAI Gym, the necessary dependencies from the Udacity Deep Reinforcement Learning Nanodegree and downloading the Unity environments for completing this project.  For completeness, the Linux and Mac OS versions of the Unity environments are included in this repo so you do not need to run those cells in the notebook but they are provided for completeness.
+1. The `setup.ipynb` notebook in the main directory of this repo should be run so that the necessary installs can take place.  This includes installing a minimal working version of OpenAI Gym, the necessary dependencies from the Udacity Deep Reinforcement Learning Nanodegree and downloading the Unity environments for completing this project.  For completeness, the Linux and Mac OS versions of the Unity environments are included in this repo so you do not need to run those cells in the notebook but they are provided just in case.  This file was not provided for the final submission of the project.
 
 2.  The `Navigation.ipynb` and `Navigation_Pixels.ipynb` notebook files are to help introduce how to interact with the environment both using the 37-dimensional state space quantifying the perception of the world and with the state being represented as raw pixel values where we are presented with an image of the world in a 84 x 84 RGB image instead of the state vector.  These are primarily provided for self-containment but are not essential to running the training code and testing out the final learned agent.  These files were not provided for the final submission of the project as they were already included in the original repository and are for exploratory analysis only.
 
@@ -24,9 +25,9 @@ The task is episodic, and in order to solve the environment, the must achieve an
 
 4. `model.py` contains the model definitions of learning the Q-function by means of a neural network.  There are two neural network definitions here depending on which state vector is chosen to represent the environment.  The first class `QNetwork` is used when the state vector is the 37-dimensional representation whereas the second class, `QNetworkConvolutional` is used when the state is represented as the 84 x 84 pixel RGB image.
 
-5. `dqn_agent.py` contains the engine for training an agent through the DQN paradigm.  It is also used in the `Train_Banana.ipynb` notebook.  When we interact with the world and obtain the state vectors, actions and rewards we provide these to the engine that will update the neural network weights defined by the aforementioned model and eventually learn to obtain the largest number of yellow bananas possible within the allotted time.
+5. `dqn_agent.py` contains the engine for training an agent through the DQN paradigm.  It is also used in the `Train_Banana.ipynb` notebook.  When we interact with the world and obtain the state vectors, actions and rewards we provide these to the engine so that it will update the neural network weights defined by the aforementioned model and eventually learn to obtain the largest number of yellow bananas possible within the allotted time.
 
-6. `Train_Banana_Pixels.ipynb` is the attempt to train a DQN Agent by using the 84 x 84 RGB image as the state.  I am currently not able to train this due to problems with the `multiprocessing` module for this particular version of the environment.  I've tried training on both Google Colab and DeepNote which randomly freezes after a certain number of episodes as it is waiting for data that never arrives.  I've also tried training locally on my machine which has a modest GPU but the RAM usage for the Unity environment shoots upwards to 12 GB which slows down my machine immensely so it was not possible to train within an acceptable amount of time.  The structure to allow for training is there but this has not been completed.  However, this is not a requirement for completing this project.  This file was also not provided for the final submission of the project.
+6. `Train_Banana_Pixels.ipynb` is the attempt to train a DQN Agent by using the 84 x 84 RGB image as the state.  I am currently not able to train this due to problems with the `multiprocessing` module for this particular version of the environment.  I've tried training on both Google Colab and DeepNote which randomly freezes after a certain number of episodes as it is waiting for data that never arrives.  I've also tried training locally on my machine which has a modest GPU but the RAM usage for the Unity environment shoots upwards to 12 GB which slows down my machine immensely so it was not possible to train within an acceptable amount of time.  The structure to allow for training is there but the mechanisms for testing the network have not been completed.  However, this is not a requirement for completing this project.  This file was also not provided for the final submission of the project.
 
 7.  `checkpoint.pth` is the saved weights for the neural network for the learned DQN Agent for collecting yellow bananas.
 
@@ -34,9 +35,9 @@ The task is episodic, and in order to solve the environment, the must achieve an
    
 9.  The Banana directories contain the Unity environment that is used to interact with the DQN Agent.  These were also not included in the final project submission.
 
-### Instructions
+## Instructions
 
-1. (Optional) Run the `setup.ipynb` notebook file to install the necessary dependencies.  This is not needed if those are already set up on your machine.  If you skip this step, you will need to move the Banana Unity environments into this directory, or modify the `Train_Banana.ipynb` notebook so that the proper Unity environment is pointed to.  There is more detail in that notebook.
+1. (Optional) Run the `setup.ipynb` notebook file to install the necessary dependencies.  This is not needed if these are already set up on your machine.  If you skip this step, you will need to move the Banana Unity environments into this directory, or modify the `Train_Banana.ipynb` notebook so that the proper Unity environment is pointed to.  There is more detail in that notebook.
 
 2. Open up the `Train_Banana.ipynb` and simply run all of the cells.  These cells include setting up the Unity environment, setting up the DQN Agent for training, setting up the training loop and executing the training.
 
