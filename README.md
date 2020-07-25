@@ -43,4 +43,29 @@ are present if you want to start using the framework immediately.  The
 Actor-Critic models the necessary Unity environment files to get the
 training and testing going are also present in the aforementioned directory.  In
 addition, the final report for the project can be found in this directory and is
-available in markdown form and PDF form as `Report.md` and `Report.pdf` respectively.
+available in markdown form and PDF form as `Report.md` and `Report.pdf`
+respectively.
+
+## Project #2 - Solve the Tennis Environment using Deep Deterministic Policy Gradients (DDPG)
+
+In this project, the objective was to train an Actor-Critic system to
+automatically solve the Tennis environment provided by Unity.  In this
+environment, two agents control rackets to bounce a ball over a net. If an agent
+hits the ball over the net, it receives a reward of +0.1.  If an agent lets a
+ball hit the ground or hits the ball out of bounds, it receives a reward of
+-0.01.  Thus, the goal of each agent is to keep the ball in play.  The
+observation space consists of 8 variables corresponding to the position and
+velocity of the ball and racket. Each agent receives its own, local observation.
+Two continuous actions are available, corresponding to movement toward (or away
+from) the net, and jumping.  They are both represented in the range of `[-1,1]`.
+The task is episodic, and in order to solve the environment, the agents must
+get an average score of +0.5 (over 100 consecutive episodes, after taking the
+maximum over both agents). Please navigate to the `p3_collab-compet`
+directory where a `README.md` file is present to guide you through how to set up
+the environment and train your own DDPG framework to do this task.  As a
+reference, the pre-trained DDPG Actor and Critic networks are present if you
+want to start using the framework immediately.  The Actor-Critic models the
+necessary Unity environment files to get the training and testing going are also
+present in the aforementioned directory.  In addition, the final report for the
+project can be found in this directory and is available in markdown form and PDF
+form as `Report.md` and `Report.pdf` respectively.

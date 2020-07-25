@@ -79,10 +79,10 @@ R(&tau;<sup>(i)</sup>).  Note that this probability is provided by a model
 **parameterised** by the parameters &theta;.  In other words,
 &pi;<sub>&theta;</sub> is the policy that provides a probability distribution of
 the actions we need to take given the observed states and this policy is a
-function that is parameterised by &theta;.  This is what is defined as the
-**policy gradient**.  As this expected return for the environment is also
+function that is parameterised by &theta;.  As this expected return for the environment is also
 parameterised by &theta;, we additionally need to calculate the gradient of the
-expected return as this is what we need to perform gradient ascent.  Therefore,
+expected return as this is what we need to perform gradient ascent. This is what is defined as the
+**policy gradient**.  Therefore,
 the gradient of this function is denoted as &nabla;<sub>&theta;</sub>U(&theta;).
 If you go through the derivation, interestingly the gradient of the expected
 return is directly proportional to take the gradient of the natural logarithm of
@@ -409,17 +409,17 @@ could implement that algorithm with this environment.
 2. Chris Yoon - "Understanding Actor-Critic Methods and A2C" -
    https://towardsdatascience.com/understanding-actor-critic-methods-931b97b6df3f
    - Retrieved on July 21, 2020.
-1. Timothy Lillicrap *et al.* - "Continuous Control with Deep Reinforcement
+3. Timothy Lillicrap *et al.* - "Continuous Control with Deep Reinforcement
    Learning" -  **ICLR 2016** - https://arxiv.org/abs/1509.02971 - Retrieved on
    July 21, 2020.
-2. Tom Schaul *et al.* - "Prioritized Experience Replay" -  **arXiv**, https://arxiv.org/abs/1511.05952 - Retrieved on July 14, 2020
-3. John Schulman *et al.* - "Trust Region Policy Optimisation" - arXiv,
+4. Tom Schaul *et al.* - "Prioritized Experience Replay" -  **arXiv**, https://arxiv.org/abs/1511.05952 - Retrieved on July 14, 2020
+5. John Schulman *et al.* - "Trust Region Policy Optimisation" - arXiv,
    https://arxiv.org/abs/1502.05477 - Retrieved on July 22, 2020
-4. Yan Duan *et al.* - Benchmarking Deep Reinforcement Learning for Continuous
+6. Yan Duan *et al.* - Benchmarking Deep Reinforcement Learning for Continuous
    Control - **ICML 2016** - http://proceedings.mlr.press/v48/duan16.html -
    Retrieved on July 22, 2020
-5. John Schulman *et al.* - "Proximal Policy Optimisation Algorithms" - arXiv,
+7. John Schulman *et al.* - "Proximal Policy Optimisation Algorithms" - arXiv,
    https://arxiv.org/abs/1707.06347 - Retrieved on July 22, 2020
-6. Gabriel Barth-Maron *et al.* - "Distributed Distributional Deterministic
+8. Gabriel Barth-Maron *et al.* - "Distributed Distributional Deterministic
    Policy Gradients" - **ICLR 2018** - https://openreview.net/pdf?id=SyZipzbCb -
    Retrieved on July 22, 2020

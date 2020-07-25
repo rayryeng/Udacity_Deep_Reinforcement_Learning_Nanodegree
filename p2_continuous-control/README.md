@@ -22,7 +22,7 @@ vector should be a number between -1 and 1.
 
 ## Environment
 
-For this project, wer were provided with two separate versions of the Unity
+For this project, we were provided with two separate versions of the Unity
 environment:
 - The first version contains a single agent.
 - The second version contains 20 identical agents, each with its own copy of the
@@ -88,35 +88,35 @@ environment in the final report beyond what is being discussed here.
     for the final submission of the project as they were already included in the
     original repository and are for exploratory analysis only.
 
-1. The `Train_Reacher.ipynb` notebook file chronicles the training process to
+3. The `Train_Reacher.ipynb` notebook file chronicles the training process to
    allow the 20 Reacher agents to learn what is necessary solve the Reacher
-   environment.  The agent is trained by using a the Deep Deterministic Policy
+   environment.  The agent is trained by using the Deep Deterministic Policy
    Gradient (DDPG) algorithm where the Actor and Critic mechanisms were learned
    by training a deep neural network.  This involves defining the Unity
    environment and getting the default "brain", importing in the class that
    implements the DDPG Agent (will talk about this soon) and running the DDPG
    training loop to finally save the learned weights for use in testing.
 
-2. `model.py` contains the model definitions for the Actor and Critic, both
+4. `model.py` contains the model definitions for the Actor and Critic, both
    represented as a neural network in the `Actor` and `Critic` classes
    respectively.
 
-3. `ddpg_agent.py` contains the engine for training an Actor-Critic system
+5. `ddpg_agent.py` contains the engine for training an Actor-Critic system
    through the DDPG algorithm.  It is also used in the `Train_Reacher.ipynb`
    notebook.  When we interact with the world and obtain the state vectors,
    actions and rewards we provide these to the engine so that it will update the
    neural network weights defined by the aforementioned models and eventually
    learn to solve the Reacher environment.
 
-4.  `checkpoints` is a directory containing the saved weights for the DDPG Actor
+6.  `checkpoints` is a directory containing the saved weights for the DDPG Actor
     and Critic, which are in `checkpoints/checkpoint_actor.pth` and
     `checkpoints/checkpoint_critic.pth` respectively.
 
-5.  `Test_Reacher.ipynb` and `Test_Reacher_MacOS.ipynb` are notebooks that
+7.  `Test_Reacher.ipynb` and `Test_Reacher_MacOS.ipynb` are notebooks that
     reload the trained DDPG Actor-Critic and runs the environment in test mode
     so that we can visually inspect the performance of the 20 agents.
 
-6.  The Reacher directories contain the Unity environment that is used to
+8.  The Reacher directories contain the Unity environment that is used to
     interact with the DDPG Actor-Critic.  These were also not included in the
     final project submission.
 
@@ -135,7 +135,7 @@ environment in the final report beyond what is being discussed here.
 
 3.  After training, a `checkpoints` directory is created which will store the
     weights for the Actor and Critic.  Take special care that there are already
-    checkpoints (see point #4 in the Getting Started section) that contains the
+    checkpoints (see point #6 in the Getting Started section) that contains the
     learned DDPG Actor and Critic when I performed a training session.  You can
     either overwrite this file with your own weights, or you can save them by
     renaming the file prior to executing the training loop cell.
