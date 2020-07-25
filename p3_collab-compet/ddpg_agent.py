@@ -10,6 +10,8 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
+### Default parameters - these can be changed when you specify an input
+### dictionary when creating the agents
 BUFFER_SIZE = int(1e6)  # replay buffer size
 BATCH_SIZE = 64         # minibatch size
 GAMMA = 0.99            # discount factor
@@ -24,13 +26,27 @@ FC2_UNITS = 300         # Number of hidden units fro the second hidden layer of 
 UPDATE_EVERY = 20        # At every multiple of this value, we update our actor and critic
 NUM_ITERS_LEARN = 10     # When we finally do the update, we run the learning process this many times
 
+config_default = {
+    'batch_size': BATCH_SIZE,
+    'buffer_size': BUFFER_SIZE,
+    'gamma': GAMMA,
+    'tau': TAU,
+    'lr_actor': LR_ACTOR,
+    'lr_critic': LR_CRITIC,
+    'weight_decay': WEIGHT_DECAY,
+    'update_every': UPDATE_EVERY,
+    'num_iters_learn': NUM_ITERS_LEARN,
+    'fc1_units': FC1_UNITS,
+    'fc2_units': FC2_UNITS
+}
+
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class Agents():
     """Interacts with and learns from the environment."""
     
     def __init__(self, state_size, action_size, num_agents, random_seed, config: dict = {}):
-        """Initialize an Agent object.
+        """Initialize an Agents object.
         
         Params
         ======
@@ -38,16 +54,28 @@ class Agents():
             action_size (int): dimension of each action
             num_agents (int): number of agents
             random_seed (int): random seed
+            config (dict): dictionary of parameters to specify for the agents if
+                           one decides to not use the default parameters.  Specify
+                           an empty dictionary to just use the default params. The
+                           available keys and their defaults are:
+                           - buffer_size - replay buffer size: 1000000
+                           - batch_size - mini batch size: 64
+                           - gamma - discount factor: 0.99
+                           - tau - soft update for parameters: 0.001
+                           - lr_actor - learning rate of the actor - 0.0001
+                           - lr_critic - learning rate of the critic - 0.001
+                           - weight_decay - L2 weight decay for the model - 0
+                           - fc1_units - number of first hidden layer units - 400
+                           - fc2_units - number of second hidden layer units - 300
+                           - update_every - interval to perform soft updates - 20
+                           - num_iters_learn - number of iteration steps at an update - 10
         """
         self.state_size = state_size
         self.action_size = action_size
         self.num_agents = num_agents  # Added by Ray - store the number of agents
-        self.seed = random.seed(random_seed)
+        random.seed(random_seed)
         self.num_timesteps = 0  # Added by Ray - store the number of timesteps every time we step
-        self.config = {'batch_size': BATCH_SIZE, 'buffer_size': BUFFER_SIZE, 'gamma': GAMMA,
-        'tau': TAU, 'lr_actor': LR_ACTOR, 'lr_critic': LR_CRITIC, 'weight_decay': WEIGHT_DECAY,
-        'update_every': UPDATE_EVERY, 'num_iters_learn': NUM_ITERS_LEARN, 'fc1_units': FC1_UNITS,
-        'fc2_units': FC2_UNITS}
+        self.config = config_default.copy()
 
         if len(config) != 0:
             print('Using user-defined parameters')
@@ -211,7 +239,7 @@ class OUNoise:
         self.mu = mu * np.ones(size)
         self.theta = theta
         self.sigma = sigma
-        self.seed = random.seed(seed)
+        random.seed(seed)
         self.reset()
 
     def reset(self):
@@ -221,7 +249,9 @@ class OUNoise:
     def sample(self):
         """Update internal state and return it as a noise sample."""
         x = self.state
-        dx = self.theta * (self.mu - x) + self.sigma * np.array([random.random() for i in range(len(x))])
+        ## Fixed bug from original Udacity implementation where the normal
+        ## distribution needs to be used instead of a uniform distribution
+        dx = self.theta + (self.mu - x) + self.sigma * np.random.randn(len(x))
         self.state = x + dx
         return self.state
 
@@ -238,7 +268,7 @@ class ReplayBuffer:
         self.memory = deque(maxlen=buffer_size)  # internal memory (deque)
         self.batch_size = batch_size
         self.experience = namedtuple("Experience", field_names=["state", "action", "reward", "next_state", "done"])
-        self.seed = random.seed(seed)
+        random.seed(seed)
     
     def add(self, state, action, reward, next_state, done):
         """Add a new experience to memory."""

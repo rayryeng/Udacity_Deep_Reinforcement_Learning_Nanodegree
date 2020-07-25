@@ -46,7 +46,7 @@ addition, the final report for the project can be found in this directory and is
 available in markdown form and PDF form as `Report.md` and `Report.pdf`
 respectively.
 
-## Project #2 - Solve the Tennis Environment using Deep Deterministic Policy Gradients (DDPG)
+## Project #3 - Solve the Tennis Environment using Deep Deterministic Policy Gradients (DDPG)
 
 In this project, the objective was to train an Actor-Critic system to
 automatically solve the Tennis environment provided by Unity.  In this
