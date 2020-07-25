@@ -355,45 +355,27 @@ the average score within this window and the reward (the maximum score) at the
 end of each episode.  We show this in 100 episode intervals:
 
 ```
-Episode 100	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.01
-Episode 200	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 300	# of timesteps needed: 14	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 400	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 500	# of timesteps needed: 16	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 600	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.00
+Episode 100	# of timesteps needed: 30	Max Score: 0.09	  Average Score in Window: 0.03
+Episode 200	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.02
+Episode 300	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.01
+Episode 400	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.01
+Episode 500	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.02
+Episode 600	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.01
 Episode 700	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 800	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 900	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 1000	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 1100	# of timesteps needed: 16	Max Score: 0.00	  Average Score in Window: 0.01
-Episode 1200	# of timesteps needed: 16	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 1300	# of timesteps needed: 16	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 1400	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.02
-Episode 1500	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.01
-Episode 1600	# of timesteps needed: 16	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 1700	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 1800	# of timesteps needed: 16	Max Score: 0.00	  Average Score in Window: 0.01
-Episode 1900	# of timesteps needed: 31	Max Score: 0.10	  Average Score in Window: 0.04
-Episode 2000	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.02
-Episode 2100	# of timesteps needed: 16	Max Score: 0.00	  Average Score in Window: 0.00
-Episode 2200	# of timesteps needed: 32	Max Score: 0.10	  Average Score in Window: 0.01
-Episode 2300	# of timesteps needed: 31	Max Score: 0.09	  Average Score in Window: 0.09
-Episode 2400	# of timesteps needed: 32	Max Score: 0.10	  Average Score in Window: 0.08
-Episode 2500	# of timesteps needed: 30	Max Score: 0.10	  Average Score in Window: 0.07
-Episode 2600	# of timesteps needed: 14	Max Score: 0.00	  Average Score in Window: 0.08
-Episode 2700	# of timesteps needed: 32	Max Score: 0.10	  Average Score in Window: 0.10
-Episode 2800	# of timesteps needed: 100	Max Score: 0.20	  Average Score in Window: 0.11
-Episode 2900	# of timesteps needed: 31	Max Score: 0.10	  Average Score in Window: 0.112
-Episode 3000	# of timesteps needed: 31	Max Score: 0.10	  Average Score in Window: 0.100
-Episode 3100	# of timesteps needed: 72	Max Score: 0.20	  Average Score in Window: 0.143
-Episode 3200	# of timesteps needed: 53	Max Score: 0.10	  Average Score in Window: 0.211
-Episode 3300	# of timesteps needed: 485	Max Score: 1.20	  Average Score in Window: 0.32
-Episode 3338	# of timesteps needed: 501	Max Score: 1.30	  Average Score in Window: 0.51
-Environment solved in 3238 episodes!	Max Score: 1.30	  Average Score in Window: 0.51
+Episode 800	# of timesteps needed: 15	Max Score: 0.00	  Average Score in Window: 0.01
+Episode 900	# of timesteps needed: 16	Max Score: 0.00	  Average Score in Window: 0.00
+Episode 1000	# of timesteps needed: 31	Max Score: 0.10	  Average Score in Window: 0.02
+Episode 1100	# of timesteps needed: 30	Max Score: 0.09	  Average Score in Window: 0.04
+Episode 1200	# of timesteps needed: 16	Max Score: 0.00	  Average Score in Window: 0.05
+Episode 1300	# of timesteps needed: 31	Max Score: 0.10	  Average Score in Window: 0.119
+Episode 1400	# of timesteps needed: 32	Max Score: 0.09	  Average Score in Window: 0.10
+Episode 1500	# of timesteps needed: 32	Max Score: 0.10	  Average Score in Window: 0.110
+Episode 1593	# of timesteps needed: 501	Max Score: 1.30	  Average Score in Window: 0.50
+Environment solved in 1493 episodes!	Max Score: 1.30	  Average Score in Window: 0.50
 ```
 
-At the 3338th episode, we managed to find a solution that gave us an average
-score of ~+0.5, meaning that we solved the environment in 3238 episodes.  This
+At the 1593rd episode, we managed to find a solution that gave us an average
+score of ~+0.5, meaning that we solved the environment in 1493 episodes.  This
 is in stark contrast to the previous project where we managed to reach a
 solution within a relatively smaller timeframe.  What is most likely the reason
 for the large discrepancy is that there is collaboration and competition
@@ -449,7 +431,7 @@ could implement that algorithm with this environment.
    Learning" -  **ICLR 2016** - https://arxiv.org/abs/1509.02971 - Retrieved on
    July 21, 2020.
 4. Tom Schaul *et al.* - "Prioritized Experience Replay" -  **arXiv**, https://arxiv.org/abs/1511.05952 - Retrieved on July 14, 2020
-3. John Schulman *et al.* - "Trust Region Policy Optimisation" - arXiv,
+5. John Schulman *et al.* - "Trust Region Policy Optimisation" - arXiv,
    https://arxiv.org/abs/1502.05477 - Retrieved on July 22, 2020
 6. Yan Duan *et al.* - Benchmarking Deep Reinforcement Learning for Continuous
    Control - **ICML 2016** - http://proceedings.mlr.press/v48/duan16.html -
