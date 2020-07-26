@@ -292,17 +292,24 @@ this is that each agent adds their experiences to the Replay Buffer and the
 Actor and Critic networks incorporate this information in order to update their
 weights.  As seen in the benchmark implementation of this project, what is
 different about the update step is that instead of updating the weights after
-every iteration, we perform 10 update steps every 20 timestamps.  This seems to
-make learning more stable.
+every iteration, we perform 20 update steps every 40 timestamps.  This is in
+contrast with the benchmark implementation which does 10 update steps every 20
+timestamps.  The rationale behind this is to allow many more experiences /
+transitions to be collected before performing parameter updates.  As seen in the
+benchmark implementation, this makes training more stable.
 
 ## DDPG Architectures
 
 In the original DDPG paper, this problem would be considered "low-dimensional",
 so only fully-connected layers are used so we directly used the state vectors to
 feed into the Actor and Critic networks.  Specifically, there are three
-fully-connected layers in this architecture with 400 neurons, 300 neurons and 
+fully-connected layers in this architecture with 600 neurons, 400 neurons and 
 finally 4 output neurons that represent the actions required for interacting
-with the environment.  What is additionally implemented is batch normalisation
+with the environment.  In the original DDPG paper, this was 400 and 300
+respectively for the hidden layers.  The increase in the number of neurons helps
+as there is more information from the agents contributing to the Replay Buffer
+and so we would want a higher capacity representation to accompany this.
+What is additionally implemented is batch normalisation
 after each fully connected-layer, before the activation function to help centre
 the data so that the model can be trained easier.  We also opted to use ReLU
 activation functions as seen in the original paper with no activation function
@@ -317,12 +324,12 @@ the weights are initialised within the `[-3e-3, 3e-3]` range.
 
 ## Hyperparameters
 
-For the hyperparameters chosen, we defer to the default parameters chosen from
-the paper.  Specifically, they are the following:
+For the hyperparameters chosen, we use some of the default parameters chosen from
+the paper.  However, there were some Specifically, they are the following:
 | Parameter | Value   |
 |---|---|
-| Buffer Size `R`  | 100000  |
-| Batch Size | 64 |
+| Buffer Size `R`  | 1000000 |
+| Batch Size | 128 |
 | `gamma` | 0.99 |
 | `τ` | 0.001 |
 | Actor Learning Rate | 10<sup>-4</sup> |
@@ -348,26 +355,23 @@ the evolution of the episodes as well as the average score obtained every 10
 episodes: 
 
 ```
-Episode 10	# of timesteps needed: 1000	Average Score: 0.73
-Episode 20	# of timesteps needed: 1000	Average Score: 1.61
-Episode 30	# of timesteps needed: 1000	Average Score: 2.77
-Episode 40	# of timesteps needed: 1000	Average Score: 3.70
-Episode 50	# of timesteps needed: 1000	Average Score: 5.35
-Episode 60	# of timesteps needed: 1000	Average Score: 8.03
-Episode 70	# of timesteps needed: 1000	Average Score: 10.85
-Episode 80	# of timesteps needed: 1000	Average Score: 13.36
-Episode 90	# of timesteps needed: 1000	Average Score: 15.34
-Episode 100	# of timesteps needed: 1000	Average Score: 16.96
-Episode 110	# of timesteps needed: 1000	Average Score: 20.24
-Episode 120	# of timesteps needed: 1000	Average Score: 23.38
-Episode 130	# of timesteps needed: 1000	Average Score: 26.43
-Episode 140	# of timesteps needed: 1000	Average Score: 29.26
-Episode 144	# of timesteps needed: 1000	Average Score: 30.03
-Environment solved in 44 episodes!	Average Score: 30.03
+Episode 10		Average Score: 1.33
+Episode 20		Average Score: 2.39
+Episode 30		Average Score: 4.54
+Episode 40		Average Score: 8.31
+Episode 50		Average Score: 13.02
+Episode 60		Average Score: 16.92
+Episode 70		Average Score: 19.60
+Episode 80		Average Score: 21.62
+Episode 90		Average Score: 23.22
+Episode 100		Average Score: 24.53
+Episode 110		Average Score: 28.03
+Episode 116		Average Score: 30.02
+Environment solved in 16 episodes!	Average Score: 30.02
 ```
 
-At the 144th episode, we managed to find a solution that gave us an average
-score of ~+30, meaning that we solved the environment in 44 episodes.  The
+At the 116 episode, we managed to find a solution that gave us an average
+score of ~+30, meaning that we solved the environment in 16 episodes.  The
 figure below shows the rewards trajectory where the horizontal axis is the
 episode and the vertical axis is the reward assigned for that episode in the
 training loop.
